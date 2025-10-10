@@ -1,0 +1,35 @@
+[project]
+name = "convert-image"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "saliouetu",email = "elhadjisaliou.niass.etu@univ-lille.fr"}
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "cisco-sdwan (>=1.26,<2.0)",
+    "requests (>=2.32.5,<3.0.0)"
+]
+
+[dependency-groups]
+dev = [
+    "pytest (>=8.4.2,<9.0.0)",
+    "converge (>=1.1.1,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry]
+packages = [
+    { include = "src" }
+]
+
+
+
+
