@@ -42,8 +42,8 @@ def pixel_to_pointy_hex(x, y, size):
     """
     x /= size
     y /= size
-    q = (sqrt(3) / 3) * x - (1 / 3) * y
-    r = (2 / 3) * y
+    q = (2 / 3) * x
+    r = (sqrt(3) / 3) * y - (1 / 3) * x
     return axial_round(q, r)
 
 
@@ -59,8 +59,8 @@ def hex_to_pixel(q, r, size):
     Returns:
         tuple[float, float]: Pixel coordinates (x, y) of the hex center.
     """
-    x = size * sqrt(3) * (q + r / 2)
-    y = size * 3 / 2 * r
+    x = size * (3/2) * q
+    y = size * sqrt(3) * (q/2 + r)
     return x, y
 
 
@@ -77,7 +77,7 @@ def hex_corner(cx, cy, size, i):
     Returns:
         tuple[float, float]: Pixel coordinates (x, y) of the corner.
     """
-    angle_deg = 60 * i - 30
+    angle_deg = 60 * i
     angle_rad = pi / 180 * angle_deg
     return (cx + size * cos(angle_rad), cy + size * sin(angle_rad))
 
@@ -99,7 +99,7 @@ def hexagon_points(q, r, size):
     return " ".join(f"{x:.2f},{y:.2f}" for x, y in points)
 
 
-def convert_png_to_svg(img_path, output_path="output.svg", num_hexes_across=100):
+def convert_png_to_svg(img_path, output_path="output.svg"):
     """
     Convert a PNG image to an SVG made of colored hexagons.
 
@@ -109,11 +109,10 @@ def convert_png_to_svg(img_path, output_path="output.svg", num_hexes_across=100)
     Args:
         img_path (str): Path to the input PNG file.
         output_path (str, optional): Output SVG file name. Defaults to "output.svg".
-        num_hexes_across (int, optional): Number of hexagons across image width. Defaults to 100.
     """
     image = Image.open(img_path).convert("RGB")
     width, height = image.size
-    size = width / (num_hexes_across * sqrt(3))
+    size =  height / (10 * sqrt(3))
     color_per_hexagon = defaultdict(list)
 
     for x in range(0, width, int(size / 2)):
@@ -122,7 +121,7 @@ def convert_png_to_svg(img_path, output_path="output.svg", num_hexes_across=100)
             h = pixel_to_pointy_hex(x, y, size)
             color_per_hexagon[h].append(pixel)
 
-    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}">']
+    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}">'] 
 
     for (q, r), pixels in color_per_hexagon.items():
         n = len(pixels)
