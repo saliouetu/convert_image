@@ -3,7 +3,7 @@ name = "convert-image"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "saliouetu",email = "elhadjisaliou.niass.etu@univ-lille.fr"}
+    {name = "saliouetu", email = "elhadjisaliou.niass.etu@univ-lille.fr"}
 ]
 license = "MIT"
 readme = "README.md"
@@ -17,7 +17,8 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest (>=8.4.2,<9.0.0)",
-    "converge (>=1.1.1,<2.0.0)"
+    "converge (>=1.1.1,<2.0.0)",
+    "pylint (>=2.17.0,<5.0.0)"
 ]
 
 
@@ -25,11 +26,11 @@ dev = [
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-
 [tool.poetry]
 packages = [
     { include = "src" }
 ]
+
 
 
 
