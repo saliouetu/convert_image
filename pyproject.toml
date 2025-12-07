@@ -31,7 +31,8 @@ packages = [
     { include = "src" }
 ]
 
-
+- name: Lint with Pylint
+  run: poetry run pylint src --exit-zero
 
 
 
