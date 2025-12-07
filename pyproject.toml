@@ -18,7 +18,8 @@ dependencies = [
 dev = [
     "pytest (>=8.4.2,<9.0.0)",
     "converge (>=1.1.1,<2.0.0)",
-    "pylint (>=4.0.0,<5.0.0)"
+    "pylint (>=2.17.0,<5.0.0)",
+    "coverage (>=7.2.0,<8.0.0)"
 ]
 
 [build-system]
@@ -29,6 +30,7 @@ build-backend = "poetry.core.masonry.api"
 packages = [
     { include = "src" }
 ]
+
 
 
 
